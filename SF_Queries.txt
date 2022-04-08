@@ -1,0 +1,94 @@
+Salesforce query
+
+Contacts--webuser name-Email
+select name,id,status__c,Phoenix_Contact_id__c, email,Web_User_Name__c from contact  where Phoenix_Contact_id__c like '%7085129%'
+
+
+	
+select Id,Createddate,Merge_From_Contact_ID__c,workflow__c,Merge_To_Contact_ID__c from MergeContactsData__c order by createddate desc limit 100
+===================
+Merges
+select id,merge_from_account_id__c,status__c,issynctoworklist__c,mergeFailmsg__c from mergeaccountsdata__c where workflow__c = '1632'
+select id,parentworklistqueueid__c,merge_from_contact_id__c,isparentmerged__c,status__c from mergecontactsdata__c where parentworklistqueueid__c = '2029'
+
+select id,merge_from_contact_id__c, Merge_To_Contact_Id__c,status__c,ParentWorklistQueueId__c from mergecontactsdata__c where status__c = 'MergeFailed' order by createddate desc limit 100
+
+
+
+SELECT Merge_To_Contact_PhnxId__c, Merge_To_Contact_Name__c, Merge_From_Contact_PhnxId__c, Merge_From_Contact_Name__c, id,parentworklistqueueid__c,isparentmerged__c,status__c from mergecontactsdata__c where isparentmerged__c = false and status__c = 'Merge'
+
+SELECT id,Merge_Date__c, Merge_From_Account_ID__c, Merge_From_Account_Name__c, Status__c, IsSyncToWorklist__c, MergeFailMsg__c, isBatchRunning__c,  Merge_To_Account_Name__c, Merge_To_Account_ID__c FROM MergeAccountsData__c  WHERE workflow__c = '1799'
+
+
+select id,status__c,issynctoworklist__c,mergeFailmsg__c from mergecontactsdata__c where workflow__c = '1841'
+
+
+select arckey,count(somkey) from somast group by arckey having count(somkey) > 500  -- for large accounts
+select ship_to_contact_id__c,count(id) from order__c  group by ship_to_contact_id__c having count(id) > 300   limit  100  --large contcats
+
+Developer Console--> File--->Objects-->filter
+select id, name, open__C, so_status_code__c, customer__c, Bill_to_Zip_code__c from Order__c where CreatedDate > 2019-01-24T00:00:00Z  -- to see Open orders
+
+SO-Orders
+select id, name, open__C, so_status_code__c, customer__c, Bill_to_Zip_code__c,payment_method__c from Order__c where CreatedDate > 2019-01-24T00:00:00Z and so_status_code__c like '%Open%' limit 10
+CPQ_orders
+
+CPQ_Quotes
+
+
+=====================================================================
+Hi Andrea,
+
+Q1 - Query for selecting the Merge Account Data (In where clause we need to pass the AWLQ request Id):
+Select Merge_From_Account_ID__c,Merge_From_Account_Name__c,Merge_To_Account_ID__c,Merge_To_Account_Name__c,Merge_Date__c,MergeFailMsg__c,Status__c,IsSyncToWorklist__c,WorkFlow__c from MergeAccountsData__c where WorkFlow__c = '123'
+
+
+Q2 - Query for selecting the Merge Account Associations (like Orders, Opportunities etc and here in where clause we need to pass Merge from Account phoenix Id):
+Select Merge_From_Account_ID__c,Merge_From_Account_Name__c,Merge_To_Account_ID__c,Merge_To_Account_Name__c,Relation_ID__c,Relation_Name__c,Merge_Date__c from MergeAccountAssociation__c where Merge_From_Account_ID__c = ''
+
+Q3 - Query for selecting the Merge Contact and its field information for unmerge (In where clause we need to pass the AWLQ request Id):
+Select Id,Merge_From_Contact_Id__c, Merge_From_Contact_Name__c,Merge_To_Contact_Id__c,Merge_To_Contact_Name__c,WorkFlow__c,Status__c  from MergeContactsData__c where WorkFlow__c = '123'
+
+Q4 - Query for selecting the Merge Contact Associations (like Orders, Opportunities etc and here in where clause we need to pass the Id value of previous query):
+select MergeContactsData__c,Relation_ID__c,Relation_Name__c from MergeContactAssociation__c where MergeContactsData__c = ''
+
+Note: 
+For Q2 and Q4: Relation_Name__c is the one which tells either it is Order/Opportunity/Notes etc.,. and Relation_ID__c over here is its respective salesforce Id. 
+
+For Q3: You can include the necessary fields, if needed:
+Active__c,Affiliation__c,Email_Info_Flag__c,Email_Promo_Flag__c,Fax_Info_Flag__c,Fax_Promo_Flag__c,Mail_Flag__c,Phone_Flag__c,Renew_Flag__c,AlternateCountryDialCode__c,AlternateCountryISOCode__c,Cell_Phone_Number__c,Comments__c,Phoenix_Contact_id__c,Status__c,StatusReason__c,Contact_Type_Code__c,CountryDialCode__c,CountryISOCode__c,Created_By__c,Degree__c,Department__c,Description__c,DoNot_Sync_Flag__c,EDIT__c,Email__c,Email_Available_Date__c,eOnly_Flag__c,Fax__c,Initial__c,IsParentMerged__c,IsSyncToWorklist__c,Key_Contact__c,Key_Contacts_True__c,Mailing_Company_Name__c,Mailing_Address__c,Mailing_City__c,Mailing_Country__c,MailingIsoCountry__c,Mailing_Department__c,Mailing_State__c,MailingIsoState__c,Mailing_Zip_Code__c,Master_Record_Id__c,Merge_Completed_By__c,Merge_Date__c,MergeFailMsg__c,Merge_From_Account_Name__c,Merge_From_Account_PhnxId__c,Merge_From_Contact_Id__c,Merge_From_Contact_Name__c,Merge_From_Contact_PhnxId__c,Merge_Requested_By__c,Merge_To_Account_Name__c,Merge_To_Account_PhnxId__c,Merge_To_Contact_Id__c,Merge_To_Contact_Name__c,Merge_To_Contact_PhnxId__c,Name__c,NationalProviderId__c,One__c,ParentWorklistQueueId__c,Payment_Method__c,Personal_Notes__c,Phoenix_Created_By__c,Created_Date__c,Phoenix_Created_DateTime__c,Phoenix_Created_Dt_CT__c,Phone__c,PO_Required_Flag__c,Price_List_Flag__c,Pricing_Created__c,Pricing_Sent__c,CcInvReq__c,PurchasingRole__c,Purchasing_Role__c,Rent_Flag__c,SalesForce_Contact_Id__c,SFPhoenix_Contact_id__c,Ship_to_Company_Name__c,Ship_to_Address__c,Ship_to_City__c,Ship_to_Country__c,ShipToIsoCountry__c,Ship_to_Department__c,Ship_to_State__c,ShipToIsoState__c,Ship_to_Zip_Code__c,Source_Code1__c,Source_Code_Help__c,Source_Code__c,Source_Code_text__c,Suspend_calls_Date__c,Title_Code__c,Web_Registration_Date__c,Web_Registration_ID__c,Web_User_Name__c,WorkFlow__c
+
+Regards,
+R Roopesh Kumar.
+
+======================================================================================================
+1.Newly created accs ===> sync 
+2.Newly created Accs - immeadiately===> merge 
+3.Accounts - Exist in Phx, Accpac
+
+ ===> Merge
+
+4.Medium Large accs - Whether it got merge 400 contacts, 1000 cpq quotes ===> merge 
+
+
+
+
+In Account Sync-AccountID-9503284-Accphxaccacsync01 
+Phoenix--last call field not updating
+In AccPac--comment,Alternate Phone number,invmethod,Specialty
+
+
+Newly created Accs - immeadiately===> merge - 926(ReqID)
+Accounts - Exist in Phx, Accpac
+
+ ===> Merge - 928(ReqID)
+
+
+371888
+
+
+
+126856	1622
+128221	548
+
+

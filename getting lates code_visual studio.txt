@@ -1,0 +1,7 @@
+getting latest code
+master ---.checkout--->Pull
+Once done
+Go to your branch  and -- > checkout and wait
+next ---> click 'merge From'
+at Merge from Branch--- > select master dropdown -- click Merge button
+
