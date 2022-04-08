@@ -1,0 +1,72 @@
+TestNg questions
+-invocation count = 5.. u can run  same test many times---  @Test(invocationCount=5) annotation
+===================================================================================================================
+how to make a TCS execution time as 60 sec, 
+ans-->
+@Test(timeOut = 300) in each test
+ or 
+We can specify the timeout value in TestNg-XML suite
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="TestNGXMLTest Test Suite" time-out="500">
+	<test name="TestNGXMLTest Test 1" verbose="2" time-out="300">
+		<classes>
+			<class name="com.journaldev.timeout.TimeoutExample" />
+		</classes>
+	</test>
+</suite>
+===================================================================================================================
+how to skip a test conditional in testng?[mark test case as SKIP][@Test(enabled=false) annotation]
+@Test(alwaysRun = true)
+===================================================================================================================
+significane of listner class in TestNg
+what is ITestlistner? interface or class?[Ans-->Interface]
+
+ITestListener has following methods
+
+OnStart- OnStart method is called when any Test starts.
+onTestSuccess- onTestSuccess method is called on the success of any Test.
+onTestFailure- onTestFailure method is called on the failure of any Test.
+onTestSkipped- onTestSkipped method is called on skipped of any Test.
+onTestFailedButWithinSuccessPercentage- method is called each time Test fails but is within success percentage.
+onFinish- onFinish method is called after all Tests are executed.
+===================================================================================================================
+how to run TCs in parallel in Testng?
+===================================================================================================================
+diff b/w factory & data provider annotation?
+===================================================================================================================
+most common Annotations in testNg? [Suite,Test,Class,method,dataprovider]
+===================================================================================================================
+challenges in selenium[not possible to test  desktop apps, capta, bar codes,images,perfomance...]
+===================================================================================================================
+what is sikuli ?[a open source lib. .. wit this help,,selenum do image related TCs]
+===================================================================================================================
+webdriver d = new ChromeWebdriver(); --> what it means?
+===================================================================================================================
+which webdriver is faster? --  htmlunitDriver()
+===================================================================================================================
+diffERENCES B/W xpath & css
+1.Xpath allows bidirectional flow which means the traversal can be both ways from parent to child and child to parent as well. Css allows only one directional flow which means the traversal is from parent to child only.
+2.Xpath is slower in terms of performance and speed than Css.
+3.Xpath allows identification with the help of text() function. Css does not have this feature.
+4.There are two types of xpath – absolute and relative. But css has no such types.
+===================================================================================================================
+use of Super keyword on java
+moca
+===================================================================================================================
+
+
+
+==========
+
+wat is diff b.w freestyle and pipeline prject
+waht is continious integration
+what Map in java?
+
+
+
+
+//img[@id ='classname_1]
+
+
+

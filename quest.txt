@@ -1,0 +1,51 @@
+can we override private method ? NO
+can we declare constructor as private?- yes.. but we can use only for singleton mehod
+call by value-call by referfence
+How to find length of string..without lenght()
+How to get substring in a string
+super.super() - can we use this ?
+what is selenium latest version- 3.141
+what are selenium-4 benefits ?
+why css selector using more that xpath?
+which framework in ur project
+diff b/w BDD & TDD
+what is STLC
+what is javascriptExecutor usage?
+what is Fluwent wait in selenium
+Out of 100TCs,..i need to execute 50 Tcs.. how to do.
+diff b/w @before method and @beforeTest
+diff b/w driver.close() and drive.quit()
+how to clear text in textbox.
+Code for scroll up and scrool down in selenium
+@Test(count) @Test(threadpull size)
+Sauce labs configuration-code ?
+=========
+annachaitanya1989@gmail.com
+
+
+
+
+
+
+
+
+RCA reports
+datatable in ATDD
+cucumber-tst runner class
+SQL- inner join
+Sauce labs configuration-code
+---------
+ivs 
+
+when untill  WFH ? .....yes, but based on pjt
+any joining bonus? ....1.2L
+how many months- probation period? ....6months
+When will be hike cycle? Am i elgible for 2022 hike ? .....yes 2022-oct
+Location of work?-......hyd-gachil
+
+16.2
+
+TTL- level 5----(9L to 13.5L)
+
+14L as
+
